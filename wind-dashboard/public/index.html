@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wind Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>🌬️ Wind Dashboard</h1>
+    <form id="searchForm">
+      <input id="searchInput" placeholder="Search a city..." autocomplete="off" required>
+      <button type="submit">Search</button>
+      <select id="unit">
+        <option value="kmh">km/h</option>
+        <option value="mph">mph</option>
+        <option value="ms">m/s</option>
+      </select>
+    </form>
+    <ul id="results" hidden></ul>
+  </header>
+
+  <main>
+    <p id="notice" hidden></p>
+    <h2 id="place">Loading…</h2>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Wind speed</h3>
+        <div class="big"><span id="speed">--</span> <small id="unitLabel">km/h</small></div>
+        <div id="beaufort" class="muted"></div>
+      </div>
+      <div class="card">
+        <h3>Gusts</h3>
+        <div class="big"><span id="gust">--</span> <small class="unitLabel">km/h</small></div>
+        <div class="muted">Peak in next 48h: <span id="peak">--</span></div>
+      </div>
+      <div class="card">
+        <h3>Direction</h3>
+        <div class="compass">
+          <span class="n">N</span><span class="e">E</span><span class="s">S</span><span class="w">W</span>
+          <div id="arrow" class="arrow"></div>
+        </div>
+        <div class="big"><span id="deg">--</span>° <small id="cardinal"></small></div>
+      </div>
+    </section>
+
+    <section class="card chartCard">
+      <h3>48-hour forecast</h3>
+      <canvas id="chart"></canvas>
+    </section>
+  </main>
+
+  <footer>Data: Open-Meteo · Built with Node.js, Express & Chart.js</footer>
+  <script src="app.js"></script>
+</body>
+</html>
